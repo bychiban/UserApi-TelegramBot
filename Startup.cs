@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
+using UserApi.Services;
 using UserApi.Models;
 
 namespace UserApi
@@ -27,15 +28,16 @@ namespace UserApi
         {
             services.AddDbContext<UserContext>(opt => opt.UseInMemoryDatabase("UserBase"));
             services.AddMvc();
+
+            services.AddScoped<IUserApiService, UserApiService>();
+            services.AddSingleton<IBotService, BotService>();
+            
+            services.Configure<BotConfiguration>(Configuration.GetSection("BotConfiguration"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
 
             app.UseMvc();
         }

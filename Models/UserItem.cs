@@ -4,10 +4,10 @@ namespace UserApi.Models
 {
     public class UserItem
     {
-        public long Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string FathersName { get; set; }
-        public DateTime BirthDay { get; set; }
+        public long id { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string fathersName { get; set; }
+        public DateTime birthDay { get; set; }
     }
 }
